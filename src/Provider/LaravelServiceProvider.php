@@ -5,7 +5,8 @@ namespace Optimus\ApiConsumer\Provider;
 use Illuminate\Support\ServiceProvider as BaseProvider;
 use Optimus\ApiConsumer\Router;
 
-class LaravelServiceProvider extends BaseProvider {
+class LaravelServiceProvider extends BaseProvider
+{
 
     public function register()
     {
@@ -14,9 +15,8 @@ class LaravelServiceProvider extends BaseProvider {
 
     public function boot()
     {
-        $this->app->singleton('apiconsumer', function(){
-            $app = app();
-
+        $this->app->singleton('apiconsumer', function ($app)
+        {
             return new Router($app, $app['request'], $app['router']);
         });
     }
